@@ -1,0 +1,82 @@
+{
+  "schema_version": 2,
+  "package": "policy",
+  "note": "天气阈值、安全区、值班责任与授权各自独立发布、独立带 seq 与有效期；对话与影像授权分列，离线摘要白名单决定边缘设备断网时能存什么。",
+  "constraints": [
+    {
+      "code": "storm",
+      "seq": 1,
+      "condition": { "storm_level_gte": 2 },
+      "action": "suspend",
+      "owner_role": "duty:safety",
+      "valid_from": "2026-09-20T06:00:00+08:00",
+      "valid_to": "2026-09-20T23:59:00+08:00",
+      "note": "暴雨橙色（2级）及以上一律暂停露天行驶"
+    },
+    {
+      "code": "heat",
+      "seq": 2,
+      "condition": { "temp_gte": 37 },
+      "action": "detour",
+      "detour_via": [["F", "X"], ["X", "D"]],
+      "detour_map_version_min": "1.1",
+      "owner_role": "duty:safety",
+      "valid_from": "2026-09-20T06:00:00+08:00",
+      "valid_to": "2026-09-20T23:59:00+08:00",
+      "note": "37℃及以上绕开暴晒湖岸段；绕行不可用时暂停"
+    },
+    {
+      "code": "loc",
+      "seq": 3,
+      "condition": { "confidence_gte": 0.75 },
+      "action": "hold_in_place",
+      "owner_role": "duty:engineer",
+      "valid_from": "2026-09-20T06:00:00+08:00",
+      "valid_to": "2026-09-20T23:59:00+08:00"
+    }
+  ],
+  "safety_zones": [
+    {
+      "zone_id": "Z-CORE",
+      "seq": 1,
+      "bounds": [120.1490, 30.2480, 120.1550, 30.2530],
+      "valid_from": "2026-09-20T06:00:00+08:00",
+      "valid_to": "2026-09-20T23:59:00+08:00",
+      "note": "核心游览区，自动行驶范围兜底"
+    }
+  ],
+  "duties": [
+    { "role_id": "duty:dispatcher", "seq": 1, "staff_id": "S-101", "name": "值班调度员·林岚", "valid_from": "2026-09-20T08:00:00+08:00", "valid_to": "2026-09-20T16:00:00+08:00" },
+    { "role_id": "duty:safety", "seq": 1, "staff_id": "S-204", "name": "安全员·郑海", "valid_from": "2026-09-20T08:00:00+08:00", "valid_to": "2026-09-20T16:00:00+08:00" },
+    { "role_id": "duty:engineer", "seq": 1, "staff_id": "S-309", "name": "设备工程师·高越", "valid_from": "2026-09-20T08:00:00+08:00", "valid_to": "2026-09-20T16:00:00+08:00" },
+    { "role_id": "duty:guide_lead", "seq": 1, "staff_id": "S-402", "name": "讲解主管·沈眉", "valid_from": "2026-09-20T08:00:00+08:00", "valid_to": "2026-09-20T16:00:00+08:00" }
+  ],
+  "authorizations": [
+    {
+      "grant_id": "A-CHAT-20260920",
+      "seq": 1,
+      "data_class": "visitor_chat",
+      "purposes": ["qa_local_answer", "handoff_summary_to_operator"],
+      "edge_retention": "session_plus_2h",
+      "cloud_retention": "7d",
+      "allowed_offline_fields": ["help_flag", "topic_tag", "consent", "captured_at"],
+      "denied_offline_fields": ["raw_utterance", "voice_clip"],
+      "valid_from": "2026-09-20T06:00:00+08:00",
+      "valid_to": "2026-09-20T23:59:00+08:00",
+      "note": "原始对话与语音不得离端；恢复联网只上传人工接管所需摘要"
+    },
+    {
+      "grant_id": "A-VIDEO-20260920",
+      "seq": 2,
+      "data_class": "visitor_video",
+      "purposes": ["obstacle_safety_check"],
+      "edge_retention": "30min_overwrite",
+      "cloud_retention": "none",
+      "allowed_offline_fields": ["frame_hash", "obstacle_flag", "captured_at"],
+      "denied_offline_fields": ["frame_bytes", "face_crop"],
+      "valid_from": "2026-09-20T06:00:00+08:00",
+      "valid_to": "2026-09-20T23:59:00+08:00",
+      "note": "影像永不上云；离线期只留哈希与障碍标记，联网不新增用途"
+    }
+  ]
+}

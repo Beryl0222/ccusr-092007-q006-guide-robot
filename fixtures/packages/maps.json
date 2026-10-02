@@ -1,0 +1,60 @@
+{
+  "schema_version": 2,
+  "package": "map",
+  "map_id": "MAP-LAKE",
+  "note": "每条边与节点都带 seq（发布内因果序号）与有效期；封闭施工通过事件 road.closed 临时生效，实地验收后才进入下一版地图。",
+  "versions": [
+    {
+      "version": 1,
+      "seq": 1,
+      "valid_from": "2026-09-20T06:00:00+08:00",
+      "valid_to": "2026-09-20T23:59:00+08:00",
+      "checkpoints": [
+        { "id": "A", "name": "东门入口", "seq": 1, "lat": 30.2501, "lng": 120.1501 },
+        { "id": "B", "name": "临湖台", "seq": 2, "lat": 30.2508, "lng": 120.1510 },
+        { "id": "C", "name": "望春桥", "seq": 3, "lat": 30.2515, "lng": 120.1518 },
+        { "id": "D", "name": "假山亭", "seq": 4, "lat": 30.2510, "lng": 120.1530 },
+        { "id": "E", "name": "西门出口", "seq": 5, "lat": 30.2504, "lng": 120.1542 },
+        { "id": "G", "name": "林荫道节点", "seq": 6, "lat": 30.2496, "lng": 120.1522 }
+      ],
+      "edges": [
+        { "seq": 1, "from": "A", "to": "B", "width_m": 3.2, "surface": "brick", "valid_from": "2026-09-20T06:00:00+08:00" },
+        { "seq": 2, "from": "B", "to": "C", "width_m": 2.4, "surface": "stone_bridge", "valid_from": "2026-09-20T06:00:00+08:00" },
+        { "seq": 3, "from": "C", "to": "D", "width_m": 2.6, "surface": "lakeshore", "valid_from": "2026-09-20T06:00:00+08:00" },
+        { "seq": 4, "from": "D", "to": "E", "width_m": 2.8, "surface": "stone", "valid_from": "2026-09-20T06:00:00+08:00" },
+        { "seq": 5, "from": "A", "to": "G", "width_m": 3.0, "surface": "shaded_path", "valid_from": "2026-09-20T06:00:00+08:00" },
+        { "seq": 6, "from": "G", "to": "E", "width_m": 3.0, "surface": "shaded_path", "valid_from": "2026-09-20T06:00:00+08:00" }
+      ]
+    },
+    {
+      "version": "1.1",
+      "seq": 2,
+      "causal_prev_event": "evt-cloud-20260920-0932-roadclosed-bc",
+      "reason": "望春桥 09:32 起施工围挡，测绘组 09:34 验收后花园绕行步道",
+      "valid_from": "2026-09-20T09:34:00+08:00",
+      "valid_to": "2026-09-20T23:59:00+08:00",
+      "checkpoints": [
+        { "id": "F", "name": "后花园步道口", "seq": 7, "lat": 30.2520, "lng": 120.1508 },
+        { "id": "X", "name": "梧桐道", "seq": 8, "lat": 30.2518, "lng": 120.1522 }
+      ],
+      "edges": [
+        { "seq": 7, "from": "B", "to": "F", "width_m": 2.6, "surface": "gravel", "valid_from": "2026-09-20T09:34:00+08:00" },
+        { "seq": 8, "from": "F", "to": "D", "width_m": 2.6, "surface": "gravel", "valid_from": "2026-09-20T09:34:00+08:00" },
+        { "seq": 9, "from": "F", "to": "X", "width_m": 3.4, "surface": "shaded_path", "valid_from": "2026-09-20T09:34:00+08:00" },
+        { "seq": 10, "from": "X", "to": "D", "width_m": 3.4, "surface": "shaded_path", "valid_from": "2026-09-20T09:34:00+08:00" }
+      ]
+    },
+    {
+      "version": 2,
+      "seq": 3,
+      "causal_prev_event": "evt-cloud-20260920-1038-survey",
+      "reason": "围挡确认持续至 12:00 且望春桥短期不开放；v1.1 绕行步道经人工接管后实地复核，固化为正式版",
+      "valid_from": "2026-09-20T10:40:00+08:00",
+      "valid_to": "2026-09-20T23:59:00+08:00",
+      "removed_edges": [
+        { "from": "B", "to": "C", "seq": 11, "reason": "施工封闭，正式移除" }
+      ],
+      "notes": "其余节点与边沿用 v1 与 v1.1；恢复自动任务前设备必须在新检查点上报 observed_map_version=2"
+    }
+  ]
+}

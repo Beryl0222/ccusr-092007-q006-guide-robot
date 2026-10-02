@@ -1,0 +1,95 @@
+{
+  "schema_version": 2,
+  "package": "route",
+  "route_id": "R-LAKE",
+  "note": "每个路段带因果 seq、地图版本要求、电量门槛、高温属性与有效期；新版本必须说明由哪一版地图/事件引起。",
+  "versions": [
+    {
+      "version": 1,
+      "seq": 1,
+      "map_id": "MAP-LAKE",
+      "map_version_required": 1,
+      "content_id": "C-LAKE",
+      "content_version": 1,
+      "valid_from": "2026-09-20T06:00:00+08:00",
+      "valid_to": "2026-09-20T23:59:00+08:00",
+      "segments": [
+        {
+          "seq": 1,
+          "from_checkpoint": "A",
+          "to_checkpoint": "B",
+          "path_edges": [["A", "B"]],
+          "min_battery_percent": 70,
+          "heat_affected": false,
+          "narration_id": "N-AB",
+          "valid_from": "2026-09-20T06:00:00+08:00"
+        },
+        {
+          "seq": 2,
+          "from_checkpoint": "B",
+          "to_checkpoint": "C",
+          "path_edges": [["B", "C"]],
+          "min_battery_percent": 55,
+          "heat_affected": false,
+          "narration_id": "N-BC",
+          "valid_from": "2026-09-20T06:00:00+08:00"
+        },
+        {
+          "seq": 3,
+          "from_checkpoint": "C",
+          "to_checkpoint": "D",
+          "path_edges": [["C", "D"]],
+          "min_battery_percent": 40,
+          "heat_affected": true,
+          "narration_id": "N-CD",
+          "valid_from": "2026-09-20T06:00:00+08:00"
+        },
+        {
+          "seq": 4,
+          "from_checkpoint": "D",
+          "to_checkpoint": "E",
+          "path_edges": [["D", "E"]],
+          "min_battery_percent": 25,
+          "heat_affected": false,
+          "narration_id": "N-DE",
+          "valid_from": "2026-09-20T06:00:00+08:00"
+        }
+      ]
+    },
+    {
+      "version": "1.1",
+      "seq": 2,
+      "map_id": "MAP-LAKE",
+      "map_version_required": "1.1",
+      "content_id": "C-LAKE",
+      "content_version": "1.1",
+      "reason": "望春桥施工，B->C 不通；改走后花园 B->F->D，讲解 N-BC 推迟到 D 点人工续讲",
+      "valid_from": "2026-09-20T09:35:00+08:00",
+      "valid_to": "2026-09-20T23:59:00+08:00",
+      "segments": [
+        { "seq": 1, "from_checkpoint": "A", "to_checkpoint": "B", "path_edges": [["A", "B"]], "min_battery_percent": 70, "heat_affected": false, "narration_id": "N-AB", "valid_from": "2026-09-20T09:35:00+08:00" },
+        { "seq": 2, "from_checkpoint": "B", "to_checkpoint": "F", "path_edges": [["B", "F"]], "min_battery_percent": 55, "heat_affected": false, "narration_id": "N-BF", "valid_from": "2026-09-20T09:35:00+08:00" },
+        { "seq": 3, "from_checkpoint": "F", "to_checkpoint": "D", "path_edges": [["F", "D"]], "min_battery_percent": 40, "heat_affected": true, "narration_id": "N-FD", "valid_from": "2026-09-20T09:35:00" },
+        { "seq": 4, "from_checkpoint": "D", "to_checkpoint": "E", "path_edges": [["D", "E"]], "min_battery_percent": 25, "heat_affected": false, "narration_id": "N-DE", "valid_from": "2026-09-20T09:35:00+08:00" }
+      ]
+    },
+    {
+      "version": 2,
+      "seq": 3,
+      "map_id": "MAP-LAKE",
+      "map_version_required": 2,
+      "content_id": "C-LAKE",
+      "content_version": "1.1",
+      "reason": "围挡确认短期不拆除；高温暴晒段 F->D 改走林荫道 F->X->D，作为人工接管恢复时的正式路线",
+      "valid_from": "2026-09-20T10:40:00+08:00",
+      "valid_to": "2026-09-20T23:59:00+08:00",
+      "segments": [
+        { "seq": 1, "from_checkpoint": "A", "to_checkpoint": "B", "path_edges": [["A", "B"]], "min_battery_percent": 70, "heat_affected": false, "narration_id": "N-AB", "valid_from": "2026-09-20T10:40:00+08:00" },
+        { "seq": 2, "from_checkpoint": "B", "to_checkpoint": "F", "path_edges": [["B", "F"]], "min_battery_percent": 55, "heat_affected": false, "narration_id": "N-BF", "valid_from": "2026-09-20T10:40:00+08:00" },
+        { "seq": 3, "from_checkpoint": "F", "to_checkpoint": "X", "path_edges": [["F", "X"]], "min_battery_percent": 40, "heat_affected": false, "narration_id": "N-FX", "valid_from": "2026-09-20T10:40:00+08:00" },
+        { "seq": 4, "from_checkpoint": "X", "to_checkpoint": "D", "path_edges": [["X", "D"]], "min_battery_percent": 35, "heat_affected": false, "narration_id": "N-XD", "valid_from": "2026-09-20T10:40:00+08:00" },
+        { "seq": 5, "from_checkpoint": "D", "to_checkpoint": "E", "path_edges": [["D", "E"]], "min_battery_percent": 25, "heat_affected": false, "narration_id": "N-DE", "valid_from": "2026-09-20T10:40:00+08:00" }
+      ]
+    }
+  ]
+}

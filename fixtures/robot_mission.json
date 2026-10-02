@@ -1,8 +1,37 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "record_id": "sample-006",
   "domain": "guide_robot",
   "occurred_at": "2026-09-20T09:00:00+08:00",
-  "revision": 1,
-  "source": "业务样例"
+  "revision": 2,
+  "source": "业务样例",
+  "migration": {
+    "from_version": 1,
+    "note": "v1 仅保存记录身份；v2 在不改变 record_id/domain/occurred_at 含义的前提下，扩展设备身份、任务引用与地图/路线/内容/策略包。旧字段原样保留。",
+    "migrated_at": "2026-09-20T08:50:00+08:00"
+  },
+  "device": {
+    "device_id": "GR-07",
+    "fleet_id": "PARK-NORTH",
+    "model": "guidebot-x2",
+    "sensors": ["lidar-front", "lidar-rear", "camera-rgb", "imu"]
+  },
+  "mission": {
+    "mission_id": "M-20260920-GR07-03",
+    "tour_id": "TOUR-LAKE-0900",
+    "route_id": "R-LAKE",
+    "content_id": "C-LAKE",
+    "planned_start": "2026-09-20T09:00:00+08:00",
+    "planned_end": "2026-09-20T11:30:00+08:00"
+  },
+  "limits": {
+    "loc_min_confidence": 0.75,
+    "battery_reserve_percent": 10
+  },
+  "packages": {
+    "map": "packages/maps.json",
+    "route": "packages/routes.json",
+    "content": "packages/contents.json",
+    "policy": "packages/policy.json"
+  }
 }

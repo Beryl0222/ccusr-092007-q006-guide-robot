@@ -1,0 +1,47 @@
+{
+  "schema_version": 2,
+  "package": "content",
+  "content_id": "C-LAKE",
+  "note": "每条讲解带 seq、时长与有效期；v1.1 为绕行步道补充讲解，并明确被替代讲解（N-BC）在恢复点的处置。",
+  "versions": [
+    {
+      "version": 1,
+      "seq": 1,
+      "valid_from": "2026-09-20T06:00:00+08:00",
+      "valid_to": "2026-09-20T23:59:00+08:00",
+      "narrations": [
+        { "id": "N-AB", "seq": 1, "title": "东门迎客", "duration_sec": 120, "valid_from": "2026-09-20T06:00:00+08:00" },
+        { "id": "N-BC", "seq": 2, "title": "望春桥的来历", "duration_sec": 150, "valid_from": "2026-09-20T06:00:00+08:00" },
+        { "id": "N-CD", "seq": 3, "title": "湖岸生态", "duration_sec": 180, "valid_from": "2026-09-20T06:00:00+08:00" },
+        { "id": "N-DE", "seq": 4, "title": "假山亭造园手法", "duration_sec": 140, "valid_from": "2026-09-20T06:00:00+08:00" }
+      ]
+    },
+    {
+      "version": "1.1",
+      "seq": 2,
+      "valid_from": "2026-09-20T09:35:00+08:00",
+      "valid_to": "2026-09-20T23:59:00+08:00",
+      "supersedes": [
+        {
+          "narration_id": "N-BC",
+          "seq": 5,
+          "disposition": "defer_to_checkpoint",
+          "resume_checkpoint": "D",
+          "note": "望春桥不通，讲解改在到达假山亭 D 后由人工或设备续讲，不得静默丢弃"
+        },
+        {
+          "narration_id": "N-CD",
+          "seq": 6,
+          "disposition": "replaced_by",
+          "replaced_by": "N-FD"
+        }
+      ],
+      "narrations": [
+        { "id": "N-BF", "seq": 7, "title": "后花园步道简介", "duration_sec": 90, "valid_from": "2026-09-20T09:35:00+08:00" },
+        { "id": "N-FD", "seq": 8, "title": "绕行步道的花木", "duration_sec": 160, "valid_from": "2026-09-20T09:35:00+08:00" },
+        { "id": "N-FX", "seq": 9, "title": "梧桐道林荫", "duration_sec": 100, "valid_from": "2026-09-20T10:40:00+08:00" },
+        { "id": "N-XD", "seq": 10, "title": "林荫到假山亭", "duration_sec": 110, "valid_from": "2026-09-20T10:40:00+08:00" }
+      ]
+    }
+  ]
+}
